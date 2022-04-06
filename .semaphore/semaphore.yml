@@ -11,44 +11,6 @@ blocks:
         - name: MAVEN_OPTS
           value: '-Dmaven.repo.local=.m2'
       jobs:
-        - name: Build
+        - name: Hello Agent!
           commands:
-            - checkout
-            - cache restore
-            - 'mvn -q package jmeter:configure -Dmaven.test.skip=true'
-            - cache store
-  - name: Test
-    task:
-      env_vars:
-        - name: MAVEN_OPTS
-          value: '-Dmaven.repo.local=.m2'
-      prologue:
-        commands:
-          - checkout
-          - cache restore
-          - mvn -q test-compile -Dmaven.test.skip=true
-      jobs:
-        - name: Unit tests
-          commands:
-            - mvn test
-        - name: Integration tests
-          commands:
-            - mvn test -Pintegration-testing
-  - name: Performance tests
-    task:
-      env_vars:
-        - name: MAVEN_OPTS
-          value: '-Dmaven.repo.local=.m2'
-      prologue:
-        commands:
-          - checkout
-          - cache restore
-          - 'mvn -q package jmeter:configure -Dmaven.test.skip=true'
-      jobs:
-        - name: Benchmark
-          commands:
-            - java -version
-            - java -jar target/spring-pipeline-demo.jar > /dev/null &
-            - sleep 20
-            - 'mvn -q jmeter:jmeter'
-            - 'mvn jmeter:results'
+            - echo "Hello Agent!"
