@@ -13,4 +13,5 @@ blocks:
       jobs:
         - name: Hello Agent!
           commands:
-            - echo "Hello Agent!"
+            - checkout
+            - 'mvn -q package jmeter:configure -Dmaven.test.skip=true'
