@@ -2,7 +2,7 @@ version: v1.0
 name: Java Spring example CI pipeline on Semaphore
 agent:
   machine:
-    type: s1-viks-local-test
+    type: s1-viks-local-mac
     os_image: ''
 blocks:
   - name: Build
